@@ -5,6 +5,7 @@ requires = [
   "packaging",
   "psutil",
   "ninja",
+  "torch",
 ]
 build-backend = "setuptools.build_meta"
 

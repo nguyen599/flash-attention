@@ -145,7 +145,7 @@ def add_cuda_gencodes(cc_flag, archs, bare_metal_version):
         cc_flag += ["-gencode", f"arch=compute_{newest},code=compute_{newest}"]
 
     return cc_flag
-    
+
 
 def get_hip_version():
     return parse(torch.version.hip.split()[-1].rstrip('-').replace('-', '+'))
@@ -568,45 +568,10 @@ class NinjaBuildExtension(BuildExtension):
 
 
 setup(
-    name=PACKAGE_NAME,
-    version=get_package_version(),
-    packages=find_packages(
-        exclude=(
-            "build",
-            "csrc",
-            "include",
-            "tests",
-            "dist",
-            "docs",
-            "benchmarks",
-            "flash_attn.egg-info",
-        )
-    ),
-    author="Tri Dao",
-    author_email="tri@tridao.me",
-    description="Flash Attention: Fast and Memory-Efficient Exact Attention",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/Dao-AILab/flash-attention",
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD License",
-        "Operating System :: Unix",
-    ],
     ext_modules=ext_modules,
     cmdclass={"bdist_wheel": CachedWheelsCommand, "build_ext": NinjaBuildExtension}
     if ext_modules
     else {
         "bdist_wheel": CachedWheelsCommand,
     },
-    python_requires=">=3.9",
-    install_requires=[
-        "torch",
-        "einops",
-    ],
-    setup_requires=[
-        "packaging",
-        "psutil",
-        "ninja",
-    ],
 )

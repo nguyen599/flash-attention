@@ -5,8 +5,6 @@ requires = [
   "packaging",
   "psutil",
   "ninja",
-  "torch",
-  "numpy"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -26,10 +24,6 @@ authors = [
   { name = "Tri Dao", email = "tri@tridao.me" }
 ]
 license = { file = "LICENSE" }
-dependencies = [
-  "torch",
-  "einops"
-]
 
 [tool.setuptools]
 include-package-data = true
